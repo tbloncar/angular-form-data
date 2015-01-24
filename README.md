@@ -1,7 +1,7 @@
 angular-form-data
 -----------------
 
-Lightweight service for transforming request data into FormData object.
+Lightweight service for transforming request data into `FormData` object.
 Easy-to-use directive for capturing file uploads in model-backed forms.
 
 *Rests upon the shoulders of the examples provided
