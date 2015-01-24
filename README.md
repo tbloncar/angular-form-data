@@ -23,30 +23,14 @@ Download `angular-form-data.min.js` and reference it after AngularJS.
 Usage
 -----
 
-Inject the `angularFormData` dependency, and use the `$formData` service and
-`formDataFilesModel` directive cooperatively.
+Inject the `angularFormData` dependency, and use the `$formData` service with
+`transformRequest`. Note that `transformRequest` can be configured for
+individual methods when using the `$resource` service.
+Alternatively, this can be configured at the `$httpProvider` level. The former
+implementation is shown below, whereas the latter is demonstrated
+[here](http://stackoverflow.com/a/21115779/1552982).
 
-*HTML:*
-
-    <div ng-app="myApp">
-       <div ng-controller="MyCtrl">
-          <form novalidate="" name="myForm">
-              <div>
-                  <label>First Name</label>
-                  <input type="text" ng-model="form.name" />
-              </div>
-              <div>
-                  <label>Profile Image</label>
-                  <input type="file" form-data-files-model="form.image" />
-              </div>
-              <div>
-                  <button ng-click="submit()">Submit</button>
-              </div>
-          </form>
-       </div>
-    </div>
-
-*JS:*
+**JS**
     
     var myApp = angular.module('myApp', ['ngResource', 'angularFormData']);
 
@@ -71,6 +55,29 @@ Inject the `angularFormData` dependency, and use the `$formData` service and
         };
     }); 
 
+The `formDataFilesModel` directive can be used to easily capture files for
+upload in a `FileList` object that lives as a property of your form-backing model. The
+`$formData` service expects this format and can handle multiple files.
+
+**HTML**
+
+    <div ng-app="myApp">
+       <div ng-controller="MyCtrl">
+          <form novalidate="" name="myForm">
+              <div>
+                  <label>First Name</label>
+                  <input type="text" ng-model="form.name" />
+              </div>
+              <div>
+                  <label>Profile Image</label>
+                  <input type="file" form-data-files-model="form.image" />
+              </div>
+              <div>
+                  <button ng-click="submit()">Submit</button>
+              </div>
+          </form>
+       </div>
+    </div>
 
 Demo
 ----
